@@ -3,13 +3,13 @@
 
 # solana
 
-[Solana](https://solana.com/ru/docs/intro/installation)
-[Anchor](https://www.anchor-lang.com/docs/installation)
-[LiteSVM](https://www.litesvm.com/)
-получить крипту для разработки: [devnet](https://faucet.solana.com/)
-проверить транзакцию: [explorer](https://explorer.solana.com/address/5Gq76UhKLVUoaag598pMASJB5RPzxhF7tKkQUJ1xuU26?cluster=devnet)
-[best practice](https://github.com/solana-foundation/awesome-solana-ai)
-[Solana Development Skill for Claude Code](https://github.com/solana-foundation/solana-dev-skill)
+- [Solana](https://solana.com/ru/docs/intro/installation)
+- [Anchor](https://www.anchor-lang.com/docs/installation)
+- [LiteSVM](https://www.litesvm.com/)
+- [Faucet](https://faucet.solana.com/) - крипта для разработки
+- [Explorer](https://explorer.solana.com/address/5Gq76UhKLVUoaag598pMASJB5RPzxhF7tKkQUJ1xuU26?cluster=devnet)
+- [best practice](https://github.com/solana-foundation/awesome-solana-ai)
+- [Solana Development Skill for Claude Code](https://github.com/solana-foundation/solana-dev-skill)
 
 ```sh
 echo 'export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"' >> ~/.bashrc
