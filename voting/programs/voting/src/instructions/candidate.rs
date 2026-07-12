@@ -1,9 +1,6 @@
 use anchor_lang::prelude::*;
 
-use crate::{
-    constants::*,
-    state::{Candidate, Poll},
-};
+use crate::{constants::POLL_SEED, Candidate, Poll};
 
 #[derive(Accounts)]
 #[instruction(poll_id: u64, candidate: String)]
@@ -27,11 +24,7 @@ pub struct InitCandidate<'info> {
     pub system_program: Program<'info, System>,
 }
 
-pub fn handle_candidate(
-    ctx: Context<InitCandidate>,
-    _poll_id: u64,
-    candidate: String,
-) -> Result<()> {
+pub fn handle_cand(ctx: Context<InitCandidate>, _poll_id: u64, candidate: String) -> Result<()> {
     ctx.accounts.candidate_account.candidate_name = candidate;
     ctx.accounts.poll_account.poll_option_index += 1;
     Ok(())

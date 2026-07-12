@@ -27,22 +27,21 @@ pub mod voting {
     }
 
     pub fn candidate(ctx: Context<InitCandidate>, poll_id: u64, candidate: String) -> Result<()> {
-        crate::handle_candidate(ctx, poll_id, candidate)
+        crate::handle_cand(ctx, poll_id, candidate)
     }
 
     pub fn vote(ctx: Context<InitVote>, poll_id: u64, candidate: String) -> Result<()> {
         crate::handler_vote(ctx, poll_id, candidate)
     }
 }
-
 /*
  * проброс аргументов для инструкции создания голосования
- * ctx: Context<InitPoll>, _poll_id: u64, name: String, description: String, start_time: u64, end_time: u64,
+ * ctx: Context<InitPoll>, poll_id: u64, name: String, description: String, start_time: u64, end_time: u64,
  */
 
 /*
  * создать кандидата голосования: проброс агрументов для инструкции создания кандидата
- * ctx: Context<InitCandidate>, _poll_id: u64, candidate: String,
+ * ctx: Context<InitCandidate>, poll_id: u64, candidate: String,
  */
 
 /*

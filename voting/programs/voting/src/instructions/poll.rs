@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-use crate::{constants::*, state::Poll};
+use crate::{constants::POLL_SEED, Poll};
 
 #[derive(Accounts)]
 #[instruction(poll_id: u64)]
@@ -15,7 +15,7 @@ pub struct InitPoll<'info> {
         bump
     )]
     pub poll_account: Account<'info, Poll>,
-    system_program: Program<'info, System>,
+    pub system_program: Program<'info, System>,
 }
 
 pub fn handler_poll(
@@ -32,7 +32,6 @@ pub fn handler_poll(
     ctx.accounts.poll_account.poll_voting_end = end_time;
     Ok(())
 }
-
 /*
 * обработка аккаунтов с использованием poll_id
 * структура контекста создания голосования, время жизни ссылок на данные:

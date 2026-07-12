@@ -1,9 +1,6 @@
-use crate::{
-    constants::*,
-    error::ErrorCode,
-    state::{Candidate, Poll},
-};
 use anchor_lang::prelude::*;
+
+use crate::{constants::POLL_SEED, error::ErrorCode, Candidate, Poll};
 
 #[derive(Accounts)]
 #[instruction(poll_id: u64, candidate: String)]
@@ -16,7 +13,6 @@ pub struct InitVote<'info> {
         bump
     )]
     pub poll_account: Account<'info, Poll>,
-
     #[account(
         mut,
         seeds = [poll_id.to_le_bytes().as_ref(), candidate.as_ref()],
@@ -33,7 +29,6 @@ pub fn handler_vote(ctx: Context<InitVote>, _poll_id: u64, _candidate: String) -
     if current_time < (ctx.accounts.poll_account.poll_voting_start as i64) {
         return Err(ErrorCode::VotingNotStarted.into());
     }
-
     ctx.accounts.candidate_account.candidate_votes += 1;
     Ok(())
 }
