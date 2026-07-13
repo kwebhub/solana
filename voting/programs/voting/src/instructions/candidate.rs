@@ -1,6 +1,5 @@
-use anchor_lang::prelude::*;
-
 use crate::{constants::POLL_SEED, Candidate, Poll};
+use anchor_lang::prelude::*;
 
 #[derive(Accounts)]
 #[instruction(poll_id: u64, candidate: String)]
