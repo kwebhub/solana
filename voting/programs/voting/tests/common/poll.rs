@@ -1,10 +1,10 @@
 use super::*;
+use voting::Poll;
 
-/// Читает и десериализует аккаунт структуры Poll напрямую из LiteSVM
 pub fn fetch_poll_account(svm: &LiteSVM, poll_pda: Pubkey) -> Poll {
     let account = svm.get_account(&poll_pda).expect("Аккаунт Poll не найден");
     let mut data_ref = &account.data[..];
-    Poll::try_deserialize(&mut data_ref).expect("Не удалось десериализовать Poll")
+    Poll::try_deserialize(&mut data_ref).expect("Не удалось десериализовать Poll аккаунт")
 }
 
 pub fn make_poll_ix(
@@ -18,7 +18,6 @@ pub fn make_poll_ix(
 ) -> Instruction {
     let (poll_pda, _) =
         Pubkey::find_program_address(&[POLL_SEED, &poll_id.to_le_bytes()], &program_id);
-
     let mut args = Vec::new();
     args.extend_from_slice(&poll_id.to_le_bytes());
     args.extend_from_slice(&(name.len() as u32).to_le_bytes());
