@@ -7,7 +7,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-voting = "HuvghVYxigVAixbFsRZsTtVnkPT9iS4iLB6bfw3VauoQ"
+escrow = "CQJ2eZyBhQBNgEv4FY7epU5GSYXfmxXnabbELFCKyCtg"
 
 [provider]
 cluster = "localnet"
