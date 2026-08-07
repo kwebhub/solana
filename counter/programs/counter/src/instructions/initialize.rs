@@ -1,6 +1,4 @@
-use anchor_lang::prelude::*;
-
-use crate::{constants::*, state::Counter};
+use super::*;
 
 #[derive(Accounts)]
 pub struct Initialize<'info> {
@@ -9,7 +7,7 @@ pub struct Initialize<'info> {
     #[account(
         init,
         payer = payer,
-        space = 8 + Counter::INIT_SPACE,
+        space = Counter::DISCRIMINATOR.len() + Counter::INIT_SPACE,
         seeds = [COUNTER_SEED],
         bump
     )]
@@ -21,12 +19,12 @@ pub fn handle_initialize(ctx: Context<Initialize>) -> Result<()> {
     ctx.accounts.counter.count = 0;
     ctx.accounts.counter.authority = ctx.accounts.payer.key();
 
-    let cpi_accounts = anchor_lang::system_program::Transfer {
+    let cpi_accounts = Transfer {
         from: ctx.accounts.payer.to_account_info(),
         to: ctx.accounts.counter.to_account_info(),
     };
-    let cpi_ctx = CpiContext::new(anchor_lang::system_program::ID, cpi_accounts);
-    anchor_lang::system_program::transfer(cpi_ctx, HELLO_WORLD_LAMPORTS)?;
+    let cpi_ctx = CpiContext::new(system_program::ID, cpi_accounts);
+    transfer(cpi_ctx, HELLO_WORLD_LAMPORTS)?;
 
     msg!("Hello, world! Counter initialized");
     Ok(())

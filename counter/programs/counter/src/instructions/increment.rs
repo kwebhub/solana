@@ -1,6 +1,4 @@
-use anchor_lang::prelude::*;
-
-use crate::{constants::*, error::ErrorCode, state::Counter};
+use super::*;
 
 #[derive(Accounts)]
 pub struct Increment<'info> {
@@ -21,6 +19,9 @@ pub fn handle_increment(ctx: Context<Increment>) -> Result<()> {
     );
 
     ctx.accounts.counter.count += 1;
-    msg!("Hello, world! Counter is now {}", ctx.accounts.counter.count);
+    msg!(
+        "Hello, world! Counter is now {}",
+        ctx.accounts.counter.count
+    );
     Ok(())
 }
