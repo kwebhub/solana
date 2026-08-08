@@ -2,7 +2,7 @@ use anchor_lang::prelude::*;
 
 #[account]
 #[derive(InitSpace)]
-pub struct Poll {
+pub struct PollAcc {
     #[max_len(32)]
     pub poll_name: String,
     #[max_len(280)]
@@ -14,7 +14,7 @@ pub struct Poll {
 
 #[account]
 #[derive(InitSpace)]
-pub struct Candidate {
+pub struct CandidateAcc {
     #[max_len(32)]
     pub candidate_name: String,
     pub candidate_votes: u64,

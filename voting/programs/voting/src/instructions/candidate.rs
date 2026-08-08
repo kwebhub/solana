@@ -1,5 +1,4 @@
-use crate::{constants::POLL_SEED, Candidate, Poll};
-use anchor_lang::prelude::*;
+use super::*;
 
 #[derive(Accounts)]
 #[instruction(poll_id: u64, candidate: String)]
@@ -7,9 +6,9 @@ pub struct InitCandidate<'info> {
     #[account(mut)]
     pub payer: Signer<'info>,
     #[account(mut, seeds = [POLL_SEED, &poll_id.to_le_bytes()], bump)]
-    pub poll_account: Account<'info, Poll>,
-    #[account(init, payer = payer, space = 8 + Candidate::INIT_SPACE, seeds = [&poll_id.to_le_bytes(), candidate.as_bytes()], bump)]
-    pub candidate_account: Account<'info, Candidate>,
+    pub poll_account: Account<'info, PollAcc>,
+    #[account(init, payer = payer, space = CandidateAcc::DISCRIMINATOR.len() + CandidateAcc::INIT_SPACE, seeds = [&poll_id.to_le_bytes(), candidate.as_bytes()], bump)]
+    pub candidate_account: Account<'info, CandidateAcc>,
     pub system_program: Program<'info, System>,
 }
 

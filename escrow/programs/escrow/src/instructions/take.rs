@@ -1,9 +1,3 @@
-/*
-* taker, maker, escrow, mint_a, mint_b, vault, taker_ata_a, taker_ata_b, maker_ata_b
-* transfer taker_ata_b -> maker_ata_b
-* transfer vault -> taker_ata_a
-* close vault
-*/
 use super::*;
 
 #[derive(Accounts)]

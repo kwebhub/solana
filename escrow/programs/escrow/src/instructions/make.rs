@@ -1,7 +1,3 @@
-/*
-* maker, escrow, mint_a, mint_b, maker_ata_a, vault
-* populate_escrow, deposit_tokens: transfer maker_ata_a -> vault
-*/
 use super::*;
 
 #[derive(Accounts)]

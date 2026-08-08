@@ -1,5 +1,4 @@
-use crate::{constants::POLL_SEED, Poll};
-use anchor_lang::prelude::*;
+use super::*;
 
 #[derive(Accounts)]
 #[instruction(poll_id: u64)]
@@ -9,11 +8,11 @@ pub struct InitPoll<'info> {
     #[account(
         init_if_needed,
         payer = payer,
-        space = 8 + Poll::INIT_SPACE,
+        space = PollAcc::DISCRIMINATOR.len() + PollAcc::INIT_SPACE,
         seeds = [POLL_SEED, &poll_id.to_le_bytes()],
         bump
     )]
-    pub poll_account: Account<'info, Poll>,
+    pub poll_account: Account<'info, PollAcc>,
     pub system_program: Program<'info, System>,
 }
 
